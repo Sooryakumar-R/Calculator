@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        div
+        {
+            border-radius: 15px;
+            
+            width:385px; margin:150px auto;
+            background-color:aliceblue;
+            box-shadow: 1px 2px 15px 10px darkcyan;
+        }
+        @media screen and (max-width: 850px) 
+        {
+            div
+            {
+
+                width:350px; margin:80px auto;
+                box-shadow: 2px 2px 8px 10px darkcyan;
+            }
+        }
+        table, tr, td 
+        {
+            border:20px solid aliceblue;;
+            border-collapse: collapse;
+
+        }
+        #head
+        {
+            font-family:none;
+            border-radius: 15px;
+            padding:7px;
+            text-align: center;
+            font-size: 25px;
+            background-color: aquamarine;
+            width:200px;
+            height:30px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        #res
+        {
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: aquamarine;
+            width:285px;
+            height:35px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+       
+        #bt:hover
+        {
+
+            background-color:tomato;
+        }
+        #bt
+        { 
+            border-radius: 10px;
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: aquamarine;
+            width:55px;
+            height:40px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        #equal
+        { 
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgb(81, 224, 102);
+            width:55px;
+            height:40px;
+            border-radius: 50%;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            
+        }
+        #clr
+        { 
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgb(216, 31, 31);
+            width:55px;
+            height:40px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        #clr:hover
+        {
+            background-color:rgb(180, 182, 95);
+        }
+      
+        #equal:hover
+        {
+
+            background-color:rgb(207, 211, 3);
+        }
+        body
+        {
+            background-color: black;
+        }
+
+    </style>
+    <script>
+
+         document.addEventListener('keydown',function(event){
+            if(event.key=='Enter')
+            {
+                
+                result();
+            }
+        });
+        document.addEventListener('keydown',function(event){
+            if(event.key=='Backspace')
+            {
+                erase();
+            }
+        });
+        document.addEventListener('keydown',function(event){
+            if(event.key=='Delete')
+            {
+                document.getElementById('clr').style.color="aqua";
+                clr();
+                
+            }
+        });
+        document.addEventListener('keydown',function(event){
+            if(event.key=='=')
+            {
+                
+                let x=document.getElementById('res').value;
+                let y=eval(x);
+                document.getElementById('res').value=`${y}`;
+            }
+        });
+        
+
+
+        function display(val)
+        {
+            document.getElementById('res').value+=val;
+        }
+        function result()
+        {
+            let x=document.getElementById('res').value;
+            let y=eval(x);
+            console.log(y);
+            document.getElementById('res').value=`${y}`;
+        }
+        function clr()
+        {
+            document.getElementById('res').value='';
+            
+        }
+        function cosine()
+        {
+            let c=document.getElementById('res').value;
+             console.log(Math.cos(c));
+             document.getElementById('res').value=Math.cos(c);
+        }
+        function sine()
+        {
+            let si=document.getElementById('res').value;
+             console.log(Math.sin(si));
+             document.getElementById('res').value=Math.sin(si);
+        }
+        function sqrt()
+        {
+            let e=document.getElementById('res').value;
+            
+             document.getElementById('res').value=Math.sqrt(e);
+        }
+        function erase()
+        {
+            let value=document.getElementById('res').value;
+            let n=value.length;
+            console.log(n);
+            let s="";
+            for(var i=0;i<n-1;i++)
+            {
+               s+=value[i];//erase last string element
+            }
+            console.log(s);
+            document.getElementById('res').value=`${s}`;
+
+
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h2 id="head"> Soorya Calculator</h2>
+
+        <table >
+    
+            <tr>
+                <td colspan="4"><input id="res" type="text"  pattern="[0-9]"></td>   
+                
+            </tr>
+            <tr>
+                <td><input id="bt" type="button" value="sin" onclick="sine()" >
+                <td><input id="bt" type="button" value="cos" onclick="cosine()" >
+                <td><input id="bt" type="button" value="&#8592" onclick="erase()" /></td>
+                <td><input id="clr" type="button" value="CLR" onclick="clr()" /></td>
+                
+                    
+            </tr>
+            <tr>
+                <td><input id="bt" type="button" value="7" onclick="display('7')" >
+                <td><input id="bt" type="button" value="8" onclick="display('8')" >
+                <td><input id="bt" type="button" value="9" onclick="display('9')" >
+                <td><input id="bt" type="button" value="/" onclick="display('/')" >
+                    
+            </tr>
+            <tr>
+                <td><input id="bt" type="button" value="4" onclick="display('4')" >
+                <td><input id="bt" type="button" value="5" onclick="display('5')" >
+                <td><input id="bt" type="button" value="6" onclick="display('6')" >
+                <td><input id="bt" type="button" value="*" onclick="display('*')" >
+                    
+            </tr>
+            <tr>
+                <td><input id="bt" type="button" value="1" onclick="display('1')" >
+                <td><input id="bt" type="button" value="2" onclick="display('2')" >
+                <td><input id="bt" type="button" value="3" onclick="display('3')" >
+                <td><input id="bt" type="button" value="-" onclick="display('-')" >
+                    
+            </tr>
+            <tr>
+                <td><input id="bt" type="button" value="." onclick="display('.')" >
+                <td><input id="bt" type="button" value="0" onclick="display('0')" >
+                <td><input id="bt" type="button" value="%" onclick="display('%')" onclick="sine()" >
+                <td><input id="bt" type="button" value="+" onclick="display('+')" >
+                    
+            </tr>
+            <tr>
+                <td><input id="bt" type="button" value="sqrt" onclick="sqrt()" >
+                <td><input id="bt" type="button" value="(" onclick="display('(')" >
+                <td><input id="bt" type="button" value=")" onclick="display(')')" >
+                <td><input id="equal" type="button" value="=" onclick="result()" >
+                    
+            </tr>
+            
+        </table>
+    </div>
+
+</body>
+</html>
